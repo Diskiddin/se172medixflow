@@ -1,0 +1,57 @@
+stages:
+  - docker
+  - deploy
+  - cleanup-deploy
+
+docker_image:
+ image: docker:stable
+ stage: docker
+ services:
+  - docker:dind
+ variables:
+  DOCKER_IMAGE_TAG: 'eu.gcr.io/medixflow-222800/medixflow-backend'
+ script:
+   # Build the image
+   - docker build --cache-from "${DOCKER_IMAGE_TAG}" -t "${DOCKER_IMAGE_TAG}" .
+   # Log in to Google Container Registry
+   - echo "$GOOGLE_KEY" > key.json
+   - docker login -u _json_key --password-stdin https://eu.gcr.io < key.json
+   # Push the image
+   - docker push ${DOCKER_IMAGE_TAG}
+
+
+.kubernetes_template: &kubernetes_template
+  image: google/cloud-sdk
+  dependencies: [] # Prevent download of artifacts
+  before_script: 
+    - apt-get -y install gettext-base
+    - echo "$GOOGLE_KEY" > key.json
+    - gcloud auth activate-service-account --key-file key.json
+    - gcloud config set compute/zone europe-west1-b
+    - gcloud config set project medixflow
+    # has to be the name of the cluster, command will configure kubectl to point to the named cluster
+    - gcloud container clusters get-credentials demo-cluster --zone europe-west1-b --project medixflow-222800
+
+demo_master:
+  <<: *kubernetes_template
+  stage: deploy
+  script:
+    - envsubst < deployment.yml | kubectl apply -f -
+  environment:
+    name: $CI_COMMIT_REF_NAME
+    url: https://medixflow.de
+    on_stop: stop_demo
+  only:
+    - master
+
+stop_demo:
+  <<: *kubernetes_template
+  stage: cleanup-deploy
+  script:
+    - envsubst < deployment.yml | kubectl delete -f -  
+  environment:
+    name: $CI_COMMIT_REF_NAME
+    action: stop
+  when: manual
+  only:
+    - master
