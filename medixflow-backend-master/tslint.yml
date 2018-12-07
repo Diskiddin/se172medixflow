@@ -1,0 +1,25 @@
+defaultSeverity: error
+extends:
+- tslint:recommended
+jsRules:
+  max-line-length:
+      options: [120]
+rules:
+  forin:
+    severity: warning
+  no-for-in-array: true
+  curly: [true, ignore-same-line]
+  arrow-parens: false
+  no-shadowed-variable:
+    severity: warning
+  no-var-requires: false
+  only-arrow-functions: true
+  object-literal-sort-keys: false
+  no-unbound-method: true
+  no-unused-expression: false
+  no-unused-expression-chai: true
+  import-spacing: false
+  variable-name: [true, "allow-leading-underscore", "allow-pascal-case"]
+rulesDirectory: [
+  tslint-no-unused-expression-chai
+]

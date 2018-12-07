@@ -1,0 +1,11 @@
+/build
+/node_modules
+/npm-debug.log
+/doc
+/doc_ts
+/coverage
+/.idea
+/.tscache
+/tsbuild
+.DS_Store
+/.nyc_output
