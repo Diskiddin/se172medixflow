@@ -1,0 +1,23 @@
+stages:
+  - test
+ 
+
+test:
+  image: node:latest
+  stage: test
+  before_script:
+  - yarn install
+  script:
+  - yarn test
+
+eslint:
+  image: node:latest
+  stage: test
+  before_script:
+  - yarn install
+  script:
+  - yarn eslint
+  allow_failure: true
+
+
+# DEPLOYMENT IS HANDLED BY NETLIFY

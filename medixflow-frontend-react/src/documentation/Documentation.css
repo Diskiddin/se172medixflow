@@ -1,0 +1,21 @@
+.Documentation {
+
+}
+
+.Documentation__entries {
+  width: 500px;
+}
+
+.Documentation__content {
+  display: flex;
+}
+
+.Documentation__entries__empty {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  animation: fade-in 1s;
+  padding: 20px;
+  text-align: center;
+}
