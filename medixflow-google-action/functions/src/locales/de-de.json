@@ -1,0 +1,6 @@
+{
+    "HELLO": "Wie kann ich Ihnen helfen?",
+    "PAINQUERRY": "Er hatte  {numberOfPains} mal Schmerzen. Die Letzten Schmerzen hatte er heute mit der Stärke {latestPainStrengh}",
+    "PAINDOCUMENTATIONSAVED": "Ok, Schmerzen der Stärke {painlevel} von {givenname} wurden gespeichert.",
+    "PAINDOCUMENTATION": "Test"
+}

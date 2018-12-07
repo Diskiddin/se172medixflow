@@ -1,0 +1,28 @@
+stages:
+  - test
+  - deploy
+
+before_script:
+  - cd functions
+  - npm install
+
+lint:
+  image: node:6.11
+  stage: test
+  script:
+    - npm run lint
+
+test:
+  image: node:6.11
+  stage: test
+  script:
+    - npm test
+
+deploy-prod:
+  image: rambabusaravanan/firebase
+  stage: deploy
+  script:
+    - firebase use medixflow-demo --token $FIREBASE_TOKEN
+    - firebase deploy -m "Pipe $CI_PIPELINE_ID Build $CI_BUILD_ID" --token $FIREBASE_TOKEN
+  only:
+    - master
