@@ -1,0 +1,45 @@
+.StartSection {
+  --overlay-alpha: .3;
+  padding: 0 3em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, var(--overlay-alpha)),
+      rgba(0, 0, 0, var(--overlay-alpha))
+    ),
+    url(../../images/care-giving.jpg)
+  ;
+  background-size: cover;
+  background-position-x: center;
+  color: white;
+
+  &__logo {
+    width: 10em;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 6em;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  &__subtitle {
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+    font-weight: 200;
+    font-size: 2em;
+    margin: 0;
+  }
+
+  &__email {
+    font-weight: 200;
+    font-size: 2em;
+    margin-top: 2rem
+  }
+}

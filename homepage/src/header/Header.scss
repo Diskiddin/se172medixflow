@@ -1,0 +1,29 @@
+.Header {
+  --bg-color: rgba(255, 255, 255, .91);
+
+  position: fixed;
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  background-color: var(--bg-color);
+  border-bottom-right-radius: 20px;
+
+  &__logo {
+    width: 2em;
+    margin-right: 1em;
+  }
+
+  &__title {
+    font-size: 1.8em;
+  }
+
+  &__edge {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+  }
+
+  &__path {
+    fill: var(--bg-color);
+  }
+}
